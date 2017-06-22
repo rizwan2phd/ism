@@ -1,4 +1,4 @@
-package com.mycompany.ism;
+package com.dexdevs.ism;
 
 import javax.servlet.annotation.WebServlet;
 
