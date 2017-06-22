@@ -16,7 +16,7 @@ public class User extends CommonEntity implements Serializable {
     
     private String password;
     
-    private String role;
+    private boolean admin;
     
     private String description;
     
