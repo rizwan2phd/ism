@@ -9,12 +9,7 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.PasswordField;
-import com.vaadin.ui.TextField;
+
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.dexdevs.views.Dashboard;
@@ -43,6 +38,7 @@ public class MyUI extends UI {
         ///adding navigator view...
         navigator.addView("", new Login());
         navigator.addView("dashboard", new Dashboard());
+        navigator.addView("customerv", new CustomerV());
         
         
         setContent(layout);
