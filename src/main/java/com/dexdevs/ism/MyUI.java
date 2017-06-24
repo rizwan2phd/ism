@@ -10,6 +10,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
@@ -36,24 +37,23 @@ public class MyUI extends UI {
     
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        final VerticalLayout layout = new VerticalLayout();
+        final GridLayout layout = new GridLayout(3,3);
+        layout.setSizeFull();
         
              form=new FormLayout();
              form.setCaptionAsHtml(true);
-             form.setSizeFull();
+             form.setSizeUndefined();
              form.setCaption("<h1>Login...</h1>");
         
              user=new TextField("Enter UserName:");
              user.setIcon(VaadinIcons.USER);
              user.setWidth(25,Sizeable.Unit.PERCENTAGE);
              user.setPlaceholder("Username....");
-             user.setValue("admin");
              user.focus();
              password=new PasswordField("Enter Password");
              password.setIcon(VaadinIcons.PASSWORD);
              password.setPlaceholder("******");
              password.setWidth(25, Sizeable.Unit.PERCENTAGE);
-             password.setValue("12345");
              login=new Button("Login");
              login.setWidth(8,Sizeable.Unit.PERCENTAGE);
              login.setClickShortcut(ShortcutAction.KeyCode.ENTER);
@@ -74,13 +74,13 @@ public class MyUI extends UI {
         });
         form.addComponents(user,password,login);
         
-        layout.addComponents(form);
+        layout.addComponent(form,1,1);
         
         setContent(layout);
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
+    @VaadinServletConfiguration(ui = MyUI.class, productionMode = false, widgetset = "com.dexdevs.ism.AppWidgetSet")
     public static class MyUIServlet extends VaadinServlet {
     }
 }

@@ -23,13 +23,13 @@ public class Customer extends CommonEntity implements Serializable {
 
     private String name;
     
-    private String phoneNumber;
+    private String phone;
 
     private String email;
 
     private String address;
 
-    private String descriptin;
+    private String description;
     
     @OneToMany(fetch = FetchType.LAZY)
     private List<Sale> sales;

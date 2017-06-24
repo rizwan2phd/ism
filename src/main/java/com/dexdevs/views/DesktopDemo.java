@@ -24,6 +24,9 @@ public class DesktopDemo extends CustomComponent{
     public DesktopDemo(){
         layout=new HorizontalSplitPanel();
         vl=new VerticalLayout();
+        vl.setSizeFull();
+        vl.setMargin(true);
+        vl.setSpacing(true);
         accordion=new Accordion();
         layout.addComponents(accordion,vl);
         

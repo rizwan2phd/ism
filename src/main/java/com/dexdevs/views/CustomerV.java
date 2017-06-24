@@ -5,56 +5,125 @@
  */
 package com.dexdevs.views;
 
+import com.dexdevs.model.Customer;
+import com.vaadin.data.Binder;
 import com.vaadin.icons.VaadinIcons;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.themes.ValoTheme;
 
 /**
  *
  * @author Chaudhary
  */
-public class CustomerV extends CustomComponent{
+public class CustomerV extends HorizontalLayout{
     
-        private FormLayout layout;
-    
+        private FormLayout form;
+        private TextField name;
+        private TextField address;
+        private TextField phone;
+        private TextField email;
+        private TextArea description;
+        private Button save;
+        private Button clear;
+        private Customer customer;
+        private Grid<Customer> grid;
+        
+        private Binder<Customer> binder=new Binder<>(Customer.class);
+        
     public CustomerV(){
+        customer = new Customer();     
         
-        layout= new FormLayout();
-        layout.setMargin(true);
-        layout.setSizeFull();
+        form= new FormLayout();
+        form.setCaption("<h3>Enter Customer Detail...</h3>");
+        form.setCaptionAsHtml(true);
+        form.setSizeUndefined();
         
-        TextField name=new TextField("Name :");
+        name=new TextField("Name :");
         name.setIcon(VaadinIcons.USER);
-        name.setPlaceholder("Enter Customer Name");
+        name.setWidth("30%");
+        name.setPlaceholder("Name...");
         
-        TextField address=new TextField();
+        address=new TextField();
         address.setCaption("Address :");
+        address.setWidth("30%");
         address.setIcon(VaadinIcons.HOME);
         address.setPlaceholder("Enter Address");
         
-        TextField phone=new TextField();
+        phone=new TextField();
         phone.setCaption("Phone :");
+        phone.setWidth("30%");
         phone.setIcon(VaadinIcons.PHONE);
-        phone.setPlaceholder("Enter Phone NO.");
+        phone.setPlaceholder("Phone#...");
         
-        TextField email=new TextField();
+        email=new TextField();
+        email.setWidth("30%");
         email.setCaption("Email :");
         email.setIcon(VaadinIcons.ENVELOPE);
-        email.setPlaceholder("Enter Email");
+        email.setPlaceholder("Email...");
         
-        TextArea description = new TextArea();
+        description = new TextArea();
+        description.setStyleName(ValoTheme.TEXTAREA_LARGE);
         description.setCaption("Description :");
-        description.setPlaceholder("Enter Description :");
-        description.setIcon(VaadinIcons.DROP);
-    
-        layout.addComponents(name, address, phone, email, description);
+        description.setWidth("30%");
+        description.setPlaceholder("Description...");
+        description.setIcon(VaadinIcons.ALIGN_LEFT);
         
-        setCompositionRoot(layout);
+        
+        binder.bindInstanceFields(this);
+        
+        save=new Button("Save");
+        save.setWidth("145");
+        save.setDescription("This Button saves and Update Customer Detail");
+        save.addClickListener((event) -> {
+            
+            Notification.show(customer.toString(), Notification.Type.HUMANIZED_MESSAGE);
+            grid.setItems(customer);
+        });
+        
+        
+        
+        
+        clear=new Button("Clear");
+        clear.setWidth("145");
+        clear.setDescription("Clear all Field to their Default Values(Empty)");
+        clear.addClickListener(e ->{
+            clear();
+        });
+    
+        form.addComponents(name, address, phone, email, description,new HorizontalLayout(clear,save));
+        
+        grid=new Grid(Customer.class);
+        grid.setCaption("<h3>Enter Customer Detail...</h3>");
+        grid.setCaptionAsHtml(true);
+        
+        
+//        grid.setColumns("name","phone","email","address");
+        addComponents(grid,form);
+        setExpandRatio(grid,1);
     
     }
-
-  
+    ///Clear all Field to their Default values mean Empty....
+    void clear(){
+        name.setValue("");
+        email.setValue("");
+        phone.setValue("");
+        description.setValue("");
+        address.setValue("");
+            
+    }
+    
+    public void setCustomer(Customer customer){
+        this.customer=customer;
+        binder.setBean(customer);
+        
+    }
+    
     
 }
