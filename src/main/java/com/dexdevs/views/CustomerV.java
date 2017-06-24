@@ -5,22 +5,17 @@
  */
 package com.dexdevs.views;
 
-import com.sun.java.accessibility.util.AWTEventMonitor;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
 
 /**
  *
  * @author Chaudhary
  */
-public class CustomerV extends CustomComponent implements View{
+public class CustomerV extends CustomComponent{
     
         private FormLayout layout;
     
@@ -36,7 +31,7 @@ public class CustomerV extends CustomComponent implements View{
         
         TextField address=new TextField();
         address.setCaption("Address :");
-        address.setIcon(VaadinIcons.AMBULANCE);
+        address.setIcon(VaadinIcons.HOME);
         address.setPlaceholder("Enter Address");
         
         TextField phone=new TextField();
@@ -60,12 +55,6 @@ public class CustomerV extends CustomComponent implements View{
     
     }
 
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
-    }
-
-    private void addComponenet(TextField name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
     
 }
