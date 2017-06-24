@@ -32,7 +32,6 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        final VerticalLayout layout = new VerticalLayout();
         
         //Navigator object is created...
         Navigator navigator=new Navigator(this,this );
@@ -45,7 +44,7 @@ public class MyUI extends UI {
         navigator.addView("dashboard", new Dashboard());
         
         
-        setContent(layout);
+        
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

@@ -7,36 +7,45 @@ package com.dexdevs.views;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.AbstractErrorMessage.ContentMode;
 import com.vaadin.ui.Accordion;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.VerticalLayout;
 
  /*
  * @author Moieen
  */
 public class Dashboard extends CustomComponent implements View{
     
-        private HorizontalSplitPanel horizental_SP;
-        private Accordion accordion;
+        private final HorizontalSplitPanel horizental_SP;
+        private final Accordion accordion;
         
     public Dashboard(){
         
         horizental_SP = new HorizontalSplitPanel();
         horizental_SP.setSizeFull();
-        horizental_SP.setSplitPosition(150, Unit.PIXELS);
+        horizental_SP.setSplitPosition(250, Unit.PIXELS);
         
         accordion=new Accordion();
         
-        Label first = new Label("<a href=\"#\">Click here</a> ", com.vaadin.shared.ui.ContentMode.HTML);
+        Label label1 = new Label("<a href=\"#\">Click here1</a> ", com.vaadin.shared.ui.ContentMode.HTML);
+        Label label2 = new Label("<a href=\"#\">Click here2</a> ", com.vaadin.shared.ui.ContentMode.HTML);
+        Label label3 = new Label("<a href=\"#\">Click here3</a> ", com.vaadin.shared.ui.ContentMode.HTML);
+        Label label4 = new Label("<a href=\"#\">Click here4</a> ", com.vaadin.shared.ui.ContentMode.HTML);
+        VerticalLayout vl=new VerticalLayout();
+        vl.addComponents(label1,label2);
+        
+        VerticalLayout vl2=new VerticalLayout();
+        vl2.addComponents(label3,label4);
         
         
-        Label secondComponent = new Label("<h2>Second Label</h2>", com.vaadin.shared.ui.ContentMode.HTML);
+        Label secondComponent = new Label("<h2>To be used Navigation</h2>", com.vaadin.shared.ui.ContentMode.HTML);
         secondComponent.setWidth(100, Unit.PERCENTAGE);
         
-        accordion.addTab(first,"Customer Tab");
+        accordion.addTab(vl,"Customer Tab");
+        accordion.addTab(vl2,"Second tab");
         
         
  
