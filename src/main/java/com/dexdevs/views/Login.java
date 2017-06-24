@@ -6,6 +6,7 @@
 package com.dexdevs.views;
 
 import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
@@ -47,12 +48,12 @@ public class Login extends CustomComponent implements View{
              
              
              user=new TextField("Enter UserName:");
-             user.setIcon(FontAwesome.USER);
+             user.setIcon(VaadinIcons.USER);
              user.setWidth(25,Unit.PERCENTAGE);
              user.setPlaceholder("Username....");
              user.focus();
              password=new PasswordField("Enter Password");
-             password.setIcon(FontAwesome.ASTERISK);
+             password.setIcon(VaadinIcons.PASSWORD);
              password.setPlaceholder("******");
              password.setWidth(25, Unit.PERCENTAGE);
              login=new Button("Login");
