@@ -4,9 +4,6 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.dexdevs.model.User</class>
     <class>com.dexdevs.model.CommonEntity</class>
-    <class>com.dexdevs.model.Sale</class>
-    <class>com.dexdevs.model.Product</class>
-    <class>com.dexdevs.model.Vendor</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/ism"/>
