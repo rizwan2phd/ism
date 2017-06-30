@@ -7,33 +7,48 @@ package com.dexdevs.views;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.DateTimeField;
+import com.vaadin.server.AbstractErrorMessage.ContentMode;
+import com.vaadin.ui.Accordion;
+import com.vaadin.ui.CustomComponent;
+import com.vaadin.ui.HorizontalSplitPanel;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.VerticalLayout;
-import java.time.LocalDateTime;
 
  /*
  * @author Moieen
  */
-public class Dashboard extends VerticalLayout implements View{
+public class Dashboard extends CustomComponent implements View{
     
+        private HorizontalSplitPanel horizental_SP;
+        private Accordion accordion;
         
     public Dashboard(){
         
+        horizental_SP = new HorizontalSplitPanel();
+        horizental_SP.setSizeFull();
+        horizental_SP.setSplitPosition(150, Unit.PIXELS);
         
-        Button b=new Button("Refresh");
-        DateTimeField d=new DateTimeField("Pick a date", LocalDateTime.now());
-        b.addClickListener((event) -> {
-            
-            Notification.show(d.getValue().toString(), Notification.Type.HUMANIZED_MESSAGE);
-        });
+        accordion=new Accordion();
         
-        addComponents(b,d);
-        setComponentAlignment(b, Alignment.MIDDLE_CENTER);
-        setComponentAlignment(d, Alignment.MIDDLE_CENTER);
+        Label first = new Label("<a href=\"#\">Click here</a> ", com.vaadin.shared.ui.ContentMode.HTML);
         
+        
+        Label secondComponent = new Label("<h2>Second Label</h2>", com.vaadin.shared.ui.ContentMode.HTML);
+        secondComponent.setWidth(100, Unit.PERCENTAGE);
+        
+        accordion.addTab(first,"Customer Tab");
+        
+        
+ 
+        horizental_SP.setFirstComponent(accordion);
+        horizental_SP.setSecondComponent(secondComponent);
+        
+        
+        
+        
+        
+        
+        setCompositionRoot(horizental_SP);
             
     }
     
