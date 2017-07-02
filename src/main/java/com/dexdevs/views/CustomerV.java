@@ -5,6 +5,7 @@
  */
 package com.dexdevs.views;
 
+import com.dexdevs.controllers.CustomerJpaController;
 import com.dexdevs.model.Customer;
 import com.vaadin.data.Binder;
 import com.vaadin.icons.VaadinIcons;
@@ -17,6 +18,9 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.themes.ValoTheme;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -34,11 +38,14 @@ public class CustomerV extends HorizontalLayout{
         private Button clear;
         private Customer customer;
         private Grid<Customer> grid;
+        private List<Customer> list=new ArrayList<>();
         
-        private Binder<Customer> binder=new Binder<>(Customer.class);
+//        private Binder<Customer> binder=new Binder<>(Customer.class);
+        
+        private CustomerJpaController cjc = new CustomerJpaController(Persistence.createEntityManagerFactory("com.mycompany_ism_war_1.0-SNAPSHOTPU"));
         
     public CustomerV(){
-        customer = new Customer();     
+            
         
         form= new FormLayout();
         form.setCaption("<h3>Enter Customer Detail...</h3>");
@@ -76,15 +83,16 @@ public class CustomerV extends HorizontalLayout{
         description.setIcon(VaadinIcons.ALIGN_LEFT);
         
         
-        binder.bindInstanceFields(this);
+//        binder.bindInstanceFields(this);
         
         save=new Button("Save");
         save.setWidth("145");
         save.setDescription("This Button saves and Update Customer Detail");
         save.addClickListener((event) -> {
-            
-            Notification.show(customer.toString(), Notification.Type.HUMANIZED_MESSAGE);
-            grid.setItems(customer);
+            customer=new Customer(name.getValue(),phone.getValue(),email.getValue(),address.getValue(),description.getValue());
+            list.add(customer);
+            cjc.create(customer);
+            grid.setItems(list);
         });
         
         
@@ -102,9 +110,10 @@ public class CustomerV extends HorizontalLayout{
         grid=new Grid(Customer.class);
         grid.setCaption("<h3>Enter Customer Detail...</h3>");
         grid.setCaptionAsHtml(true);
+        grid.setColumns("id","name","email","address","phone","description");
         
         
-//        grid.setColumns("name","phone","email","address");
+        
         addComponents(grid,form);
         setExpandRatio(grid,1);
     
@@ -119,11 +128,11 @@ public class CustomerV extends HorizontalLayout{
             
     }
     
-    public void setCustomer(Customer customer){
-        this.customer=customer;
-        binder.setBean(customer);
-        
-    }
+//    public void setCustomer(Customer customer){
+//        this.customer=customer;
+//        binder.setBean(customer);
+//        
+//    }
     
     
 }

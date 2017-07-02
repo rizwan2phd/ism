@@ -33,4 +33,20 @@ public class Customer extends CommonEntity implements Serializable {
     
     @OneToMany(fetch = FetchType.LAZY)
     private List<Sale> sales;
+
+    public Customer() {
+    }
+    
+    
+
+    public Customer(String name, String phone, String email, String address, String description) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.description = description;
+        
+    }
+    
+    
 }

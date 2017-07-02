@@ -9,14 +9,13 @@ import com.vaadin.server.Sizeable;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 import javax.servlet.annotation.WebServlet;
 
 /**
@@ -33,6 +32,7 @@ public class MyUI extends UI {
         private TextField user;
         private PasswordField password;
         private Button login;
+        private CheckBox remember;
         
     
     @Override
@@ -72,7 +72,12 @@ public class MyUI extends UI {
                         + "Pres ESC to proceed",Notification.Type.ERROR_MESSAGE);
             }
         });
-        form.addComponents(user,password,login);
+             
+             
+               remember=new CheckBox("Remember Password...");
+               
+               
+        form.addComponents(user,password,remember,login);
         
         layout.addComponent(form,1,1);
         
